@@ -1,33 +1,57 @@
 "use client";
 
 import Image from "next/image";
-import RotatingText from "@/components/ui/RotatingText";
-import Particles from "@/components/ui/Particles";
-import BlurText from "@/components/ui/BlurText";
-import GooeyNav from "@/components/ui/GooeyNav";
+import RotatingText from "@/src/component/ui/RotatingText";
+import Particles from "@/src/component/ui/Particles";
+import BlurText from "@/src/component/ui/BlurText";
+import GooeyNav from "@/src/component/ui/GooeyNav";
+import { SiGmail, SiInstagram, SiGithub } from "react-icons/si";
+import LogoLoop from "@/src/component/ui/LogoLoop";
 
 const handleAnimationComplete = () => {
   console.log("Animation completed!");
 };
 
+{
+  /* Navigation Items */
+}
 const items = [
   { label: "Home", href: "#" },
   { label: "About", href: "#" },
+  { label: "Projects", href: "#" },
   { label: "Contact", href: "#" },
+];
+
+/* Logo  di footer */
+const techLogos = [
+  {
+    node: <SiGithub size={30} />,
+    title: "GitHub",
+    href: "https://github.com/edoaditama",
+  },
+  {
+    node: <SiGmail size={30} />,
+    title: "Gmail",
+    href: "mailto:edoaditama66@gmail.com",
+  },
+  {
+    node: <SiInstagram size={30} />,
+    title: "Instagram",
+    href: "https://www.instagram.com/edoaditamma/",
+  },
 ];
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col items-start justify-center p-8 md:p-24 bg-zinc-950 overflow-hidden">
-      
-      {/* Background Particles - Tetap di z-0 agar di belakang */}
-      <div className="absolute inset-0 z-0">
+    <main className="relative flex min-h-screen flex-col items-center justify-center px-6 py-20 md:p-24 bg-zinc-950 overflow-x-hidden">
+      {/* Background Particles */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Particles
           particleColors={["#360185", "#8F0177"]}
-          particleCount={500}
+          particleCount={300}
           particleSpread={10}
           speed={0.1}
-          particleBaseSize={200}
+          particleBaseSize={150}
           moveParticlesOnHover
           alphaParticles
           disableRotation={false}
@@ -35,12 +59,17 @@ export default function Home() {
         />
       </div>
 
-      {/* Gooey Navigation - Fixed di tengah atas */}
-      <div className="fixed top-8 left-1/2 -translate-x-1/2 z-100">
+      {/* Brand - Responsif*/}
+      <div className="fixed top-6 left- md:top-8 md:left-8 z-60 font-black text-xl text-cyan-400 tracking-tighter">
+        Port.
+      </div>
+
+      {/* Navigation */}
+      <div className="fixed top-6 md:top-8 left-1/2 -translate-x-1/2 z-50 scale-90 md:scale-100">
         <GooeyNav
           items={items}
-          particleCount={15}
-          particleDistances={[90, 10]}
+          particleCount={12}
+          particleDistances={[80, 10]}
           particleR={100}
           initialActiveIndex={0}
           animationTime={600}
@@ -49,67 +78,73 @@ export default function Home() {
         />
       </div>
 
-      {/* Main Content - z-10 agar di atas partikel */}
-      <div className="relative z-10 flex flex-col items-start w-full max-w-6xl mt-16 md:mt-0">
-
-        {/* Container Header: Nama di kiri, Foto di kanan */}
-        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between w-full gap-8">
-
-          {/* Sisi Kiri: Nama dan Jabatan */}
-          <div className="flex flex-col items-start gap-1">
-            <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-none">
-              Prameswara Edo Aditama
+      {/* Main Content Wrapper */}
+      <div className="relative z-10 flex flex-col items-center md:items-start w-full max-w-6xl mt-12 md:mt-0">
+        <div className="flex flex-col items-center md:items-start justify-between w-full gap-6">
+          {/* Headline */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[0.9] md:leading-none">
+              Prameswara <br className="hidden md:block" /> Edo Aditama
             </h1>
 
-            <div className="flex items-center mt-2">
-              <span className="text-zinc-500 mr-3 text-lg md:text-xl font-medium uppercase tracking-wider">
+            {/* Rotating Text Area */}
+            <div className="flex flex-col md:flex-row items-center mt-6 md:mt-4 gap-2 md:gap-3">
+              <span className="text-zinc-500 text-sm md:text-xl font-medium ">
                 I'm a
               </span>
-              <RotatingText
-                texts={[
-                  "Front End Developer",
-                  "Data Administrator",
-                  "IT Support",
-                ]}
-                mainClassName="text-xl md:text-4xl font-bold text-cyan-400 bg-cyan-400/10 px-3 py-1 md:px-5 md:py-2 rounded-lg md:rounded-xl overflow-hidden"
-                staggerFrom="last"
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "-100%", opacity: 0 }}
-                transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                rotationInterval={2500}
-              />
-            </div>
-          </div>
-
-          {/* Sisi Ranan: Foto Profil */}
-          <div className="relative group">
-            {/* Efek Glow Tipis di Belakang Foto */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500">
-            </div>
-            <div className="relative w-32 h-32 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-zinc-800 bg-zinc-900">
-              <Image
-                src="/next.svg" // Pastikan ganti ke file foto asli kamu nanti
-                alt="Prameswara Edo Aditama"
-                fill
-                className="object-cover"
-                priority
-              />
+              <div className="h-10 md:h-14 flex items-center">
+                <RotatingText
+                  texts={[
+                    "Front End Developer",
+                    "Data Administrator",
+                    "IT Support",
+                  ]}
+                  mainClassName="text-lg md:text-3xl font-bold text-cyan-400 bg-cyan-400/10 px-4 py-1 md:px-5 md:py-2 rounded-full border border-cyan-400/20"
+                  staggerFrom="last"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-100%", opacity: 0 }}
+                  transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                  rotationInterval={2500}
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Deskripsi */}
-        <div className="mt-12 max-w-4xl">
+        {/*blurtext  */}
+        <div className="mt-10 md:mt-12 max-w-3xl text-center md:text-left">
           <BlurText
-            text="Lulusan S1 Sistem Informasi Universitas Amikom Purwokerto, memiliki minat bekerja dalam bidang teknologi informasi, administrasi, dan pengembangan web. Memiliki pengalaman bekerja dalam bidang administrasi dan manajemen data seperti pengolahan dan pengarsipan data. Saya antusias untuk berkontribusi dalam proyek-proyek yang menantang dan terus belajar dalam industri teknologi yang terus berkembang."
-            delay={50}
+            text="Lulusan S1 Sistem Informasi Universitas Amikom Purwokerto, memiliki minat bekerja dalam bidang teknologi informasi, administrasi, dan pengembangan web. Berpengalaman dalam pengolahan data dan antusias berkontribusi dalam proyek teknologi yang berkembang."
+            delay={40}
             animateBy="words"
             direction="top"
             onAnimationComplete={handleAnimationComplete}
-            className="text-zinc-400 text-lg md:text-xl leading-relaxed text-left"
+            className="text-zinc-400 text-base md:text-xl leading-relaxed opacity-80"
           />
         </div>
+      </div>
+
+      {/* Footer*/}
+      <div className="mt-20 md:absolute md:bottom-10 left-0 w-full z-20 flex flex-col gap-6">
+        <div className="w-full">
+          <LogoLoop
+            logos={techLogos}
+            speed={25}
+            direction="left"
+            logoHeight={40}
+            gap={60}
+            hoverSpeed={0}
+            scaleOnHover
+            fadeOut={true}
+            fadeOutColor="#09090b"
+            ariaLabel="Social Links"
+          />
+        </div>
+        <p className="text-center font-bold text-zinc-600 text-xs md:text-sm ">
+          {" "}
+          Prameswara Edo Aditama<span> &copy; 2026 All rights reserved.</span>
+        </p>
       </div>
     </main>
   );
