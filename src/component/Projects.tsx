@@ -1,33 +1,28 @@
 import {
-  SiNextdotjs,
   SiTailwindcss,
   SiReact,
-  SiMysql,
   SiLaravel,
   SiBootstrap,
-  SiGithub,
-  SiInstagram,
-  SiWhatsapp,
+  SiDaisyui,
 } from "react-icons/si";
 
 const PROJECTS = [
   {
-    title: "E-Commerce System",
-    description:
-      "Sistem informasi penjualan berbasis web dengan integrasi pembayaran.",
+    title: "5TAR Web",
+    description: "Website resmi untuk komunitas 5TAR.",
     tech: [
-      { name: "Next.js", icon: <SiNextdotjs /> },
+      { name: "React", icon: <SiReact /> },
       { name: "Tailwind", icon: <SiTailwindcss /> },
+      { name: "DaisyUI", icon: <SiDaisyui /> },
     ],
     link: "#",
   },
   {
-    title: "Data Management App",
-    description:
-      "Aplikasi pengolahan data administrasi untuk efisiensi workflow.",
+    title: "Undangan Digital",
+    description: "Undangan digital untuk acara silaturahmi berbasis web.",
     tech: [
       { name: "React", icon: <SiReact /> },
-      { name: "MySQL", icon: <SiMysql /> },
+      { name: "Tailwind", icon: <SiTailwindcss /> },
     ],
     link: "#",
   },
